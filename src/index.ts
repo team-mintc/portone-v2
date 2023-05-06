@@ -1,1 +1,1 @@
-export const test = () => console.log('a')
+export * from '@portone/browser-sdk/v2';
