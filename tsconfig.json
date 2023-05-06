@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "outDir": "./lib/"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

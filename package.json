@@ -1,0 +1,46 @@
+{
+  "name": "portone-v2",
+  "version": "0.0.1",
+  "description": "api wrapper for portone v2",
+  "main": "./lib/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "clean": "rm -rf ./lib/",
+    "lint": "eslint ./src/ --fix",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "author": {
+    "name": "Junseong Park",
+    "email": "js@kweiza.com",
+    "url": "https://github.com/kweiza"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0"
+  },
+  "keywords": [
+    "payments",
+    "portone",
+    "vscode",
+    "pg"
+  ],
+  "bugs": {
+    "url": "https://github.com/team-mintc/portone-v2/issues"
+  },
+  "homepage": "https://github.com/team-mintc/portone-v2#readme",
+  "dependencies": {
+    "@portone/browser-sdk": "^0.0.1",
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^20.1.0",
+    "eslint": "^8.40.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4"
+  }
+}
