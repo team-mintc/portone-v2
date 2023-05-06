@@ -1,5 +1,5 @@
 {
-  "name": "portone-v2",
+  "name": "@team-mintc/portone-v2",
   "version": "0.0.1",
   "description": "api wrapper for portone v2",
   "main": "./lib/index.js",
