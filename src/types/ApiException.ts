@@ -14,6 +14,7 @@ export type CancelPaymentExceptionCode =
   | 'CANCEL_TAX_FREE_AMOUNT_MUST_BE_LESS_THAN_OR_EQUAL_TO_CANCELLABLE_TAX_FREE_AMOUNT'
   | 'CANCEL_TAX_AMOUNT_MUST_BE_LESS_THAN_OR_EQUAL_TO_CANCELLABLE_TAX_AMOUNT';
 export type ResendWebhookExceptionCode = PaymentExceptionCode | 'WEBHOOK_ERROR';
+export type NoticeVirtualAccountDepositExceptionCode = PaymentExceptionCode;
 
 export interface ApiException {
   /**

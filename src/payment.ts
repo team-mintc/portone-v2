@@ -2,6 +2,8 @@ import axios from 'axios';
 import {
   CancelPaymentParam,
   CancelPaymentResponse,
+  NoticeVirtualAccountDepositParam,
+  NoticeVirtualAccountDepositResponse,
   PaymentParam,
   PaymentResponse,
   PaymentsParam,
@@ -94,4 +96,27 @@ export const resendWebhook = async (
     data,
   });
   return response.data as ResendWebhookResponse;
+};
+
+/**
+ * 가상계좌 테스트 웹훅 호출
+ *
+ * 가상계좌 테스트 결제 건에 대한 입금 통보 웹훅을 호출합니다.
+ */
+export const noticeVirtualAccountDeposit = async (
+  access_token: string,
+  params: NoticeVirtualAccountDepositParam,
+) => {
+  const {payment_id, store_id, ...data} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/test-payments/${payment_id}/notice-virtual-account-deposit`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    params: {store_id},
+    data,
+  });
+  return response.data as NoticeVirtualAccountDepositResponse;
 };
