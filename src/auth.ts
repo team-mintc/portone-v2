@@ -1,7 +1,10 @@
 import axios from 'axios';
-import {AuthResponse} from 'types/Auth';
+import {AuthResponse, RefreshParam, SignInParam} from 'types/Auth';
 
-export const signIn = async (api_key: string) => {
+/**
+ * API Key 방식으로 로그인
+ */
+export const signIn = async ({api_key}: SignInParam) => {
   const response = await axios({
     url: 'https://api.portone.io/v2/signin/api-key',
     method: 'post',
@@ -11,7 +14,10 @@ export const signIn = async (api_key: string) => {
   return response.data as AuthResponse;
 };
 
-export const refreshToken = async (refresh_token: string) => {
+/**
+ * 토큰 재발급
+ */
+export const refreshToken = async ({refresh_token}: RefreshParam) => {
   const response = await axios({
     url: 'https://api.portone.io/v2/token-regeneration',
     method: 'post',
@@ -19,4 +25,9 @@ export const refreshToken = async (refresh_token: string) => {
     data: {refresh_token},
   });
   return response.data as AuthResponse;
+};
+
+export default {
+  signIn,
+  refreshToken,
 };

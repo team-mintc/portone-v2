@@ -1,11 +1,11 @@
-export interface SignInRequest {
+export interface SignInParam {
   /**
    * 사용자의 API Key
    */
   api_key: string;
 }
 
-export interface RefreshRequest {
+export interface RefreshParam {
   /**
    * 새로운 token을 발급받기 위한 refresh token
    */
@@ -22,3 +22,5 @@ export interface AuthResponse {
    */
   refresh_token: string;
 }
+
+export type Token = AuthResponse;

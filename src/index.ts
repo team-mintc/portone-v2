@@ -1,3 +1,38 @@
+import {ApiException} from 'types/ApiException';
+import {Token} from 'types/Auth';
+import _ from 'lodash';
+
+import {getPaymentDetails, getPaymentsDetails} from 'payment';
+import {refreshToken, signIn} from 'auth';
+
 export * from '@portone/browser-sdk/v2';
 
-export * from './auth';
+export const init = async (api_key: string) => {
+  let tokens: Token = await signIn({api_key});
+
+  const handleRefresh = async <T, R>(
+    func: (access_token: string, params: T) => R,
+    params: T,
+  ) => {
+    try {
+      const result = await func(tokens.access_token, params);
+      return result;
+    } catch (error) {
+      if ((error as ApiException).code === 'UNAUTHORIZED') {
+        tokens = await refreshToken({refresh_token: tokens.refresh_token});
+        const result = await func(tokens.access_token, params);
+        return result;
+      }
+    }
+  };
+
+  const withToken = <T, R>(func: (access_token: string, params: T) => R) => {
+    return (params: T) => handleRefresh(func, params);
+  };
+
+  return {
+    tokens,
+    getPaymentDetails: withToken(getPaymentDetails),
+    getPaymentsDetails: withToken(getPaymentsDetails),
+  };
+};
