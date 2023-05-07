@@ -1134,3 +1134,37 @@ export interface InstantPaymentMethodForm {
   /** 가상계좌 발급을 위해 필요한 가상계좌 발급 관련 정보 */
   virtual_account: InstantVirtualAccountForm;
 }
+
+export interface EscrowReceiver {
+  name?: string;
+  phone_number?: string;
+  post_code?: string;
+  /** 주소 형식 */
+  address?: Address;
+}
+export interface EscrowSender extends EscrowReceiver {
+  relationship?: string;
+}
+
+export interface LogisticsForm {
+  company:
+    | 'HYUNDAI'
+    | 'HANARO'
+    | 'SAGAWA'
+    | 'KGB'
+    | 'YELLOWCAP'
+    | 'DONGBU'
+    | 'EPOST'
+    | 'CJGLS'
+    | 'HANJIN'
+    | 'DAESIN'
+    | 'ETC'
+    | 'ILYANG'
+    | 'KYONGDONG'
+    | 'CHUNIL';
+  invoice_number: string;
+  sent_at: string;
+  received_at?: string;
+  /** 주소 형식 */
+  address?: Address;
+}

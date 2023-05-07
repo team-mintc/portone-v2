@@ -2,6 +2,7 @@ import {
   ApiException,
   BillingKeyPaymentExceptionCode,
   CancelPaymentExceptionCode,
+  EscrowLogisExceptionCode,
   InstantPaymentExceptionCode,
   NoticeVirtualAccountDepositExceptionCode,
   PaymentExceptionCode,
@@ -12,7 +13,10 @@ import {
   BillingKeyPayment,
   CustomerForm,
   CustomerFormWithoutId,
+  EscrowReceiver,
+  EscrowSender,
   InstantPaymentMethodForm,
+  LogisticsForm,
   Payment,
   PaymentMethod,
   PgProvider,
@@ -199,4 +203,21 @@ export interface InstantPaymentResponse {
 
 export interface InstantPaymentException extends Omit<ApiException, 'code'> {
   code: InstantPaymentExceptionCode;
+}
+
+export interface EscrowLogisParam extends PaymentParam {
+  sender: EscrowSender;
+  receiver: EscrowReceiver;
+  logistics_form: LogisticsForm;
+}
+
+export interface EscrowLogisResponse {
+  company: string;
+  invoice_number: string;
+  sent_at: string;
+  applied_at: string;
+}
+
+export interface EscrowLogisException extends Omit<ApiException, 'code'> {
+  code: EscrowLogisExceptionCode;
 }

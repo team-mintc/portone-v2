@@ -4,6 +4,8 @@ import {
   BillingKeyPaymentResponse,
   CancelPaymentParam,
   CancelPaymentResponse,
+  EscrowLogisParam,
+  EscrowLogisResponse,
   InstantPaymentParam,
   InstantPaymentResponse,
   NoticeVirtualAccountDepositParam,
@@ -185,4 +187,24 @@ export const payInstant = async (
     data,
   });
   return response.data as InstantPaymentResponse;
+};
+
+/**
+ * 에스크로 배송정보 등록/변경
+ */
+export const escrowLogis = async (
+  access_token: string,
+  params: EscrowLogisParam,
+) => {
+  const {payment_id, ...data} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/payments/${payment_id}/escrow/logis`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    data,
+  });
+  return response.data as EscrowLogisResponse;
 };

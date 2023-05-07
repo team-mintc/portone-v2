@@ -43,6 +43,14 @@ export type InstantPaymentExceptionCode =
   | 'TAX_FREE_AMOUNT_MUST_BE_LESS_THAN_OR_EQUAL_TO_TOTAL_AMOUNT'
   | 'PAYMENT_ALREADY_PAID';
 
+export type EscrowLogisExceptionCode =
+  | PaymentExceptionCode
+  | 'NOT_PAID'
+  | 'PERMISSION_DENIED'
+  | 'STORE_NOT_FOUND'
+  | 'PAYMENT_NOT_FOUND'
+  | 'PG_PROVIDER_ERROR';
+
 export interface ApiException {
   /**
    * 에러 코드
