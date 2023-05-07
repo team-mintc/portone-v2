@@ -34,6 +34,15 @@ export type BillingKeyPaymentExceptionCode =
   | 'BILLING_KEY_NOT_FOUND'
   | 'PG_PROVIDER_ERROR';
 
+export type InstantPaymentExceptionCode =
+  | PaymentExceptionCode
+  | 'PG_PROVIDER_ERROR'
+  | 'PERMISSION_DENIED'
+  | 'STORE_NOT_FOUND'
+  | 'CHANNEL_NOT_FOUND'
+  | 'TAX_FREE_AMOUNT_MUST_BE_LESS_THAN_OR_EQUAL_TO_TOTAL_AMOUNT'
+  | 'PAYMENT_ALREADY_PAID';
+
 export interface ApiException {
   /**
    * 에러 코드

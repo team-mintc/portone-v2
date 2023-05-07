@@ -2,6 +2,7 @@ import {
   ApiException,
   BillingKeyPaymentExceptionCode,
   CancelPaymentExceptionCode,
+  InstantPaymentExceptionCode,
   NoticeVirtualAccountDepositExceptionCode,
   PaymentExceptionCode,
   ResendWebhookExceptionCode,
@@ -9,7 +10,9 @@ import {
 } from './ApiException';
 import {
   BillingKeyPayment,
+  CustomerForm,
   CustomerFormWithoutId,
+  InstantPaymentMethodForm,
   Payment,
   PaymentMethod,
   PgProvider,
@@ -139,7 +142,6 @@ export interface BillingKeyPaymentParam
     PaymentParam {
   /** 빌링키 결제를 진행하는 상점의 id */
   store_id?: string;
-  scheduled_at: string;
   /** 고객 정보 */
   customer?: CustomerFormWithoutId;
 }
@@ -155,4 +157,46 @@ export interface BillingKeyPaymentResponse {
 
 export interface BillingKeyPaymentException extends Omit<ApiException, 'code'> {
   code: BillingKeyPaymentExceptionCode;
+}
+
+export interface InstantPaymentParam
+  extends Pick<
+      BillingKeyPayment,
+      | 'order_name'
+      | 'is_cultural_expense'
+      | 'is_escrow'
+      | 'products'
+      | 'custom_data'
+      | 'total_amount'
+      | 'custom_data'
+      | 'country'
+      | 'currency'
+      | 'notice_urls'
+      | 'product_type'
+      | 'product_count'
+    >,
+    PaymentParam {
+  /** 빌링키 결제를 진행하는 상점의 id */
+  store_id?: string;
+  /** 고객 정보 */
+  customer?: CustomerForm;
+  /** 면세 금액 (기본값: 0) */
+  tax_free_amount?: number;
+  /** 결제 채널 이름 */
+  channel_name: string;
+  /** 가능한 결제 수단: 카드, 가상계좌 선택한 결제 수단에 따라 card와 virtual_account 중 하나에만 값이 들어있어야 합니다. */
+  payment_method_option: InstantPaymentMethodForm;
+}
+
+export interface InstantPaymentResponse {
+  tx_id: string;
+  customer_id: string;
+  requested_at: string;
+  paid_at: string;
+  /** PG사 거래ID */
+  pg_tx_id: string;
+}
+
+export interface InstantPaymentException extends Omit<ApiException, 'code'> {
+  code: InstantPaymentExceptionCode;
 }

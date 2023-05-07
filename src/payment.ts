@@ -164,3 +164,23 @@ export const payBillingKey = async (
   });
   return response.data as BillingKeyPaymentResponse;
 };
+
+/**
+ * 키인(수기) 결제
+ */
+export const payInstant = async (
+  access_token: string,
+  params: BillingKeyPaymentParam,
+) => {
+  const {payment_id, ...data} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/payments/${payment_id}/instant/pay`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    data,
+  });
+  return response.data as BillingKeyPaymentResponse;
+};

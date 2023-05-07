@@ -8,6 +8,82 @@ export type PaymentMethod =
   | 'GIFT_CERTIFICATE'
   | 'EASY_PAY';
 export type ChannelType = 'LIVE' | 'TEST';
+export type Bank =
+  | 'BANK_OF_KOREA'
+  | 'KOREA_DEVELOPMENT_BANK'
+  | 'INDUSTRIAL_BANK_OF_KOREA'
+  | 'KOOKMIN_BANK'
+  | 'SUHYUP_BANK'
+  | 'EXPORT_IMPORT_BANK_OF_KOREA'
+  | 'NH_NONGHYUP_BANK'
+  | 'LOCAL_NONGHYUP'
+  | 'WOORI_BANK'
+  | 'SC_BANK_KOREA'
+  | 'CITI_BANK_KOREA'
+  | 'DAEGU_BANK'
+  | 'BUSAN_BANK'
+  | 'GWANGJU_BANK'
+  | 'JEJU_BANK'
+  | 'JEONBUK_BANK'
+  | 'KYONGNAM_BANK'
+  | 'KFCC'
+  | 'SHINHYUP'
+  | 'SAVINGS_BANK_KOREA'
+  | 'MORGAN_STANLEY_BANK'
+  | 'HSBC_BANK'
+  | 'DEUTSCHE_BANK'
+  | 'JP_MORGAN_CHASE_BANK'
+  | 'MIZUHO_BANK'
+  | 'MUFG_BANK'
+  | 'BANK_OF_AMERICA_BANK'
+  | 'BNP_PARIBAS_BANK'
+  | 'ICBC'
+  | 'BANK_OF_CHINA'
+  | 'NATIONAL_FORESTRY_COOPERATIVE_FEDERATION'
+  | 'UNITED_OVERSEAS_BANK'
+  | 'BANK_OF_COMMUNICATIONS'
+  | 'CHINA_CONSTRUCTION_BANK'
+  | 'EPOST'
+  | 'KODIT'
+  | 'KIBO'
+  | 'HANA_BANK'
+  | 'SHINHAN_BANK'
+  | 'K_BANK'
+  | 'KAKAO_BANK'
+  | 'TOSS_BANK'
+  | 'KCIS'
+  | 'DAISHIN_SAVINGS_BANK'
+  | 'SBI_SAVINGS_BANK'
+  | 'HK_SAVINGS_BANK'
+  | 'WELCOME_SAVINGS_BANK'
+  | 'SHINHAN_SAVINGS_BANK'
+  | 'KYOBO_SECURITIES'
+  | 'DAISHIN_SECURITIES'
+  | 'MERITZ_SECURITIES'
+  | 'MIRAE_ASSET_SECURITIES'
+  | 'BOOKOOK_SECURITIES'
+  | 'SAMSUNG_SECURITIES'
+  | 'SHINYOUNG_SECURITIES'
+  | 'SHINHAN_FINANCIAL_INVESTMENT'
+  | 'YUANTA_SECURITIES'
+  | 'EUGENE_INVESTMENT_SECURITIES'
+  | 'KAKAO_PAY_SECURITIES'
+  | 'TOSS_SECURITIES'
+  | 'KOREA_FOSS_SECURITIES'
+  | 'HANA_FINANCIAL_INVESTMENT'
+  | 'HI_INVESTMENT_SECURITIES'
+  | 'KOREA_INVESTMENT_SECURITIES'
+  | 'HANWHA_INVESTMENT_SECURITIES'
+  | 'HYUNDAI_MOTOR_SECURITIES'
+  | 'DB_FINANCIAL_INVESTMENT'
+  | 'KB_SECURITIES'
+  | 'KTB_INVESTMENT_SECURITIES'
+  | 'NH_INVESTMENT_SECURITIES'
+  | 'SK_SECURITIES'
+  | 'SGI'
+  | 'KIWOOM_SECURITIES'
+  | 'EBEST_INVESTMENT_SECURITIES'
+  | 'CAPE_INVESTMENT_CERTIFICATE';
 export type PgProvider =
   | 'HTML5_INICIS'
   | 'PAYPAL'
@@ -644,6 +720,11 @@ export interface CustomerFormWithoutId
   birth_day?: string;
 }
 
+export interface CustomerForm extends CustomerFormWithoutId {
+  /** 가맹점의 고객 고유 ID - 값을 넣지 않으면 PortOne에서 자체 채번합니다. */
+  customer_id?: string;
+}
+
 export interface Origin {
   /** 결제를 요청한 단말의 플랫폼 분류 */
   platform_type: 'PC' | 'MOBILE' | 'API';
@@ -1003,4 +1084,53 @@ export interface Payment {
   merchant_id: string;
   store_id: string;
   transactions: Transactions[];
+}
+
+export interface CardCredential {
+  card_number: string;
+  expiry_month: string;
+  expiry_year: string;
+  birth_or_business_registration_number: string;
+  password_two_digits: string;
+}
+export interface VBV {
+  cavv: string;
+  xid: string;
+  eci: string;
+}
+export interface InstantCardForm {
+  /** 카드를 이용한 결제 및 빌링키 발급에 필요한 인증 관련 정보 */
+  card_credential: CardCredential;
+  cvc?: string;
+  /** 3DS 인증 결과를 담는 객체 (Verified by Visa) */
+  vbv?: VBV;
+  /** 카드 할부 개월 수 */
+  card_installment_plan?: number;
+  /** 무이자 할부 적용 여부 */
+  use_free_installment_plan?: boolean;
+  use_free_interest_from_mall?: boolean;
+}
+
+export interface InstantVirtualAccountForm {
+  /** 은행 */
+  bank: Bank;
+  /** valid_hours와 due_date 둘 중 하나의 값만 채워야 함 */
+  account_expiry: object;
+  /** 가상계좌 유형(일반 or 고정) */
+  account_type: VirtualAccountType;
+  /** 고정식 가상계좌 방식에서, 가맹점이 가상계좌 번호를 관리하지 않고 PG사가 pg_account_id에 매핑되는 가상계좌 번호를 내려줄 때 사용하는 필드입니다. 동일한 pg_account_id로 가상계좌 발급 요청시에는 항상 같은 가상계좌 번호가 내려옵니다. account_type이 FIXED일 때만 유효하며, account_number 필드와 함께 사용할 수 없습니다. */
+  pg_account_id?: string;
+  /** 고정식 가상계좌 방식에서, PG사로부터 일정 갯수의 가상계좌 번호를 미리 전달받았을 때 사용하는 필드입니다. 가맹점으로부터 전달받은 가상계좌 번호를 직접 입력하면 됩니다. account_type이 FIXED일 때만 유효하며, pg_account_id 필드와 함께 사용할 수 없습니다. */
+  account_number?: string;
+  /** 현금영수증 발급을 위해 필요한 정보 */
+  cash_receipt_form?: object;
+  /** 예금주명 */
+  remittee_name?: string;
+}
+
+export interface InstantPaymentMethodForm {
+  /** 카드를 이용한 결제 & 빌링키 발급 시에 필요한 카드 관련 정보 */
+  card: InstantCardForm;
+  /** 가상계좌 발급을 위해 필요한 가상계좌 발급 관련 정보 */
+  virtual_account: InstantVirtualAccountForm;
 }
