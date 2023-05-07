@@ -4,6 +4,8 @@ import {
   BillingKeyPaymentResponse,
   CancelPaymentParam,
   CancelPaymentResponse,
+  InstantPaymentParam,
+  InstantPaymentResponse,
   NoticeVirtualAccountDepositParam,
   NoticeVirtualAccountDepositResponse,
   PaymentParam,
@@ -170,7 +172,7 @@ export const payBillingKey = async (
  */
 export const payInstant = async (
   access_token: string,
-  params: BillingKeyPaymentParam,
+  params: InstantPaymentParam,
 ) => {
   const {payment_id, ...data} = params;
   const response = await axios({
@@ -182,5 +184,5 @@ export const payInstant = async (
     },
     data,
   });
-  return response.data as BillingKeyPaymentResponse;
+  return response.data as InstantPaymentResponse;
 };
