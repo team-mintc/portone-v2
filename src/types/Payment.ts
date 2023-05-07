@@ -1,5 +1,15 @@
-import {ApiException, PaymentExceptionCode} from './ApiException';
-import {Payment, PaymentMethod, PgProvider, TransactionStatus} from './common';
+import {
+  ApiException,
+  CancelPaymentExceptionCode,
+  PaymentExceptionCode,
+} from './ApiException';
+import {
+  Payment,
+  PaymentMethod,
+  PgProvider,
+  RefundAccount,
+  TransactionStatus,
+} from './common';
 
 export interface PaymentParam {
   /** 결제 ID */
@@ -46,4 +56,30 @@ export interface PaymentsParam {
   sort_by: 'REQUESTED_AT' | 'STATUS_UPDATED_AT';
   /** 정렬 방향 DESCENDING: 내림차순 ASCENDING: 오름차순 */
   sort_order: 'DESCENDING' | 'ASCENDING';
+}
+
+export interface CancelPaymentParam extends PaymentParam {
+  /** 취소 사유 */
+  reason?: string;
+  /** 취소 금액 - 값을 넣지 않으면 전액 취소됩니다. */
+  cancel_amount?: number;
+  /** 취소 금액 중 면세 금액 - 값을 넣지 않으면 전액 과세됩니다. */
+  tax_free_amount?: number;
+  /** 취소 금액 중 부가세 금액 (PG사 기본값: null). 결제 시 부가세를 지정했던 경우 필수 입력 바랍니다. 지원되는 PG사: 나이스페이먼츠(NICE), 이니시스(HTML5_INICIS) */
+  vat_amount?: number;
+  /** 결제 건의 취소 가능 잔액 - 값을 넣지 않으면 별도의 검증 처리를 수행하지 않습니다. */
+  check_refundable_amount?: number;
+  /** 환불 계좌 정보 - 가상계좌 결제인 경우에만 기입할 수 있습니다. */
+  refund?: RefundAccount;
+}
+
+export interface CancelPaymentResponse extends PaymentResponse {
+  /** 취소 대상 거래 아이디 */
+  cancelled_tx_id: string;
+  /** 취소 아이디 */
+  cancellation_id: string;
+}
+
+export interface CancelPaymentException extends Omit<ApiException, 'code'> {
+  code: CancelPaymentExceptionCode;
 }

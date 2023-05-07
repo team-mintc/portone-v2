@@ -2,7 +2,7 @@ import {ApiException} from 'types/ApiException';
 import {Token} from 'types/Auth';
 import _ from 'lodash';
 
-import {getPaymentDetails, getPaymentsDetails} from 'payment';
+import {cancelPayment, getPaymentDetails, getPaymentsDetails} from 'payment';
 import {refreshToken, signIn} from 'auth';
 
 export * from '@portone/browser-sdk/v2';
@@ -34,5 +34,6 @@ export const init = async (api_key: string) => {
     tokens,
     getPaymentDetails: withToken(getPaymentDetails),
     getPaymentsDetails: withToken(getPaymentsDetails),
+    cancelPayment: withToken(cancelPayment),
   };
 };

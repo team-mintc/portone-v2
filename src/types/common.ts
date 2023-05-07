@@ -753,6 +753,17 @@ export interface VirtualAccount {
   refund_status?: RefundStatus;
 }
 
+export interface RefundAccount {
+  /** 은행 */
+  bank: string;
+  /** 예금주 */
+  account_holder: string;
+  /** 계좌번호 */
+  account_number: string;
+  /** 예금주 연락처 - 스마트로 가상계좌 결제인 경우에 필요합니다. */
+  phone_number?: string;
+}
+
 export type Carrier = 'SKT' | 'KT' | 'LGU' | 'HELLO' | 'KCT' | 'SK7';
 export interface Mobile {
   /** 통신사 */
