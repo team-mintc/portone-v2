@@ -2,6 +2,7 @@ import {
   ApiException,
   BillingKeyPaymentExceptionCode,
   CancelPaymentExceptionCode,
+  EscrowCompleteExceptionCode,
   EscrowLogisExceptionCode,
   InstantPaymentExceptionCode,
   NoticeVirtualAccountDepositExceptionCode,
@@ -220,4 +221,16 @@ export interface EscrowLogisResponse {
 
 export interface EscrowLogisException extends Omit<ApiException, 'code'> {
   code: EscrowLogisExceptionCode;
+}
+
+export interface EscrowCompleteParam extends PaymentParam {
+  from_store?: boolean;
+}
+
+export interface EscrowCompleteResponse {
+  completed_at: string;
+}
+
+export interface EscrowCompleteException extends Omit<ApiException, 'code'> {
+  code: EscrowCompleteExceptionCode;
 }

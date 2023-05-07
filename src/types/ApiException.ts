@@ -51,6 +51,8 @@ export type EscrowLogisExceptionCode =
   | 'PAYMENT_NOT_FOUND'
   | 'PG_PROVIDER_ERROR';
 
+export type EscrowCompleteExceptionCode = EscrowLogisExceptionCode;
+
 export interface ApiException {
   /**
    * 에러 코드

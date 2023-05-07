@@ -208,3 +208,23 @@ export const escrowLogis = async (
   });
   return response.data as EscrowLogisResponse;
 };
+
+/**
+ * 에스크로 구매완료
+ */
+export const escrowComplete = async (
+  access_token: string,
+  params: EscrowLogisParam,
+) => {
+  const {payment_id, ...data} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/payments/${payment_id}/escrow/complete`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    data,
+  });
+  return response.data as EscrowLogisResponse;
+};
