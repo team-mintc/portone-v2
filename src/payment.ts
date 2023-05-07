@@ -9,6 +9,8 @@ import {
   PaymentsParam,
   ResendWebhookParam,
   ResendWebhookResponse,
+  SchedulePaymentParam,
+  SchedulePaymentResponse,
 } from 'types/Payment';
 
 /**
@@ -119,4 +121,24 @@ export const noticeVirtualAccountDeposit = async (
     data,
   });
   return response.data as NoticeVirtualAccountDepositResponse;
+};
+
+/**
+ * 결제 예약
+ */
+export const schedulesPayment = async (
+  access_token: string,
+  params: SchedulePaymentParam,
+) => {
+  const {...data} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/schedules`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    data,
+  });
+  return response.data as SchedulePaymentResponse;
 };

@@ -15,6 +15,15 @@ export type CancelPaymentExceptionCode =
   | 'CANCEL_TAX_AMOUNT_MUST_BE_LESS_THAN_OR_EQUAL_TO_CANCELLABLE_TAX_AMOUNT';
 export type ResendWebhookExceptionCode = PaymentExceptionCode | 'WEBHOOK_ERROR';
 export type NoticeVirtualAccountDepositExceptionCode = PaymentExceptionCode;
+export type SchedulePaymentExceptionCode =
+  | PaymentExceptionCode
+  | 'PAST_SCHEDULED'
+  | 'PAYMENT_ALREADY_EXISTS'
+  | 'PAYMENT_ALREADY_SCHEDULED'
+  | 'BILLING_KEY_DELETED'
+  | 'PERMISSION_DENIED'
+  | 'STORE_NOT_FOUND'
+  | 'BILLING_KEY_NOT_FOUND';
 
 export interface ApiException {
   /**

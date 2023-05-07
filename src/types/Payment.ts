@@ -4,8 +4,10 @@ import {
   NoticeVirtualAccountDepositExceptionCode,
   PaymentExceptionCode,
   ResendWebhookExceptionCode,
+  SchedulePaymentExceptionCode,
 } from './ApiException';
 import {
+  BillingKeyPayment,
   Payment,
   PaymentMethod,
   PgProvider,
@@ -113,4 +115,19 @@ export interface NoticeVirtualAccountDepositResponse extends WebhookResponse {}
 export interface NoticeVirtualAccountDepositException
   extends Omit<ApiException, 'code'> {
   code: NoticeVirtualAccountDepositExceptionCode;
+}
+
+export interface SchedulePaymentParam extends BillingKeyPayment, PaymentParam {
+  /** 빌링키 결제를 진행하는 상점의 id */
+  store_id?: string;
+  scheduled_at: string;
+}
+
+export interface SchedulePaymentResponse {
+  id: string;
+  scheduled_at: string;
+}
+
+export interface SchedulePaymentException extends Omit<ApiException, 'code'> {
+  code: SchedulePaymentExceptionCode;
 }

@@ -867,7 +867,58 @@ export interface Cancellation {
   status: CancellationStatus;
 }
 
-export interface Transactions {
+export type ProductType = 'REAL' | 'DIGITAL';
+
+export interface BillingKeyPayment {
+  /** 빌링키 결제에 사용할 빌링키 */
+  billing_key: string;
+  /** 주문명 */
+  order_name: string;
+  /** 문화비 지출 여부 (기본값: "false") */
+  is_cultural_expense?: boolean;
+  /** 에스크로 여부 (기본값: "false") */
+  is_escrow?: boolean;
+  /** 상품 정보 (에스크로 결제 상품 정보) */
+  products?: Product[];
+  /** 가맹점의 결제 데이터 추가 정보 */
+  custom_data?: string;
+  /** 결제 금액 */
+  total_amount: number;
+  /** 국가 코드 */
+  country?: Country;
+  /** 화폐 */
+  currency: Currency;
+  /** 결제 승인/실패 시 요청을 받을 웹훅 주소입니다. 상점에 설정되어 있는 값보다 우선적으로 적용됩니다. */
+  notice_urls?: string[];
+  /** 할부 개월 수 */
+  card_installment_plan?: number;
+  /** 무이자 할부 이자를 상점이 부담할지 여부 */
+  use_free_interest_from_mall?: boolean;
+  /** 상품 유형 */
+  product_type?: ProductType;
+  /** 상품 개수 */
+  product_count?: number;
+  /** 카드 포인트 사용 여부 */
+  use_card_point?: boolean;
+  /** 각 PG사 별로 필요한 파라미터를 받습니다. */
+  bypass?: string;
+}
+
+export interface Transactions
+  extends Omit<
+    BillingKeyPayment,
+    | 'billing_key'
+    | 'store_id'
+    | 'total_amount'
+    | 'currency'
+    | 'notice_urls'
+    | 'card_installment_plan'
+    | 'use_free_interest_from_mall'
+    | 'product_type'
+    | 'product_count'
+    | 'use_card_point'
+    | 'bypass'
+  > {
   /** 포트원 채번 거래번호 */
   id: string;
   /** 대표 트랜잭션 여부 */
@@ -888,8 +939,6 @@ export interface Transactions {
   status_updated_at?: string;
   /** 수정 시각 */
   updated_at: string;
-  /** 주문명 */
-  order_name: string;
   /** 결제 건의 상태를 나타내는 enum string */
   status: TransactionStatus;
   /** 결제 금액 및 통화 관련 세부 정보 */
@@ -898,16 +947,8 @@ export interface Transactions {
   customer: Customer;
   /** 결제를 요청한 근원에 대한 정보 */
   origin: Origin;
-  /** 문화비 지출 여부 */
-  is_cultural_expense?: boolean;
-  /** 에스크로 여부 */
-  is_escrow: boolean;
   /** 에스크로 결제 정보 */
   escrow_detail?: EscrowDetail;
-  /** 상품 정보 - 에스크로 결제 시 에스크로 상품 정보로 활용됩니다. */
-  products?: Product[];
-  /** 가맹점의 결제 데이터 추가 정보 */
-  custom_data?: string;
   /** 결제요청시각 */
   requested_at: string;
   /** 포트원 프로모션 아이디 */
@@ -916,8 +957,6 @@ export interface Transactions {
   failure?: PaymentFailure;
   /** 결제실패시각 - status가 FAILED인 경우 제공됩니다. */
   failed_at?: string;
-  /** 국가 코드 */
-  country?: Country;
   /** 결제완료시각 - status가 COMPLETED로 되었을 경우 제공됩니다. */
   paid_at?: string;
   /** 결제 수단 정보 */
