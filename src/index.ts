@@ -2,7 +2,18 @@ import {ApiException} from 'types/ApiException';
 import {Token} from 'types/Auth';
 import _ from 'lodash';
 
-import {cancelPayment, getPaymentDetails, getPaymentsDetails} from 'payment';
+import {
+  cancelPayment,
+  escrowComplete,
+  escrowLogis,
+  getPaymentDetails,
+  getPaymentsDetails,
+  noticeVirtualAccountDeposit,
+  payBillingKey,
+  payInstant,
+  resendWebhook,
+  schedulesPayment,
+} from 'payment';
 import {refreshToken, signIn} from 'auth';
 
 export * from '@portone/browser-sdk/v2';
@@ -31,9 +42,15 @@ export const init = async (api_key: string) => {
   };
 
   return {
-    tokens,
     getPaymentDetails: withToken(getPaymentDetails),
     getPaymentsDetails: withToken(getPaymentsDetails),
     cancelPayment: withToken(cancelPayment),
+    resendWebhook: withToken(resendWebhook),
+    noticeVirtualAccountDeposit: withToken(noticeVirtualAccountDeposit),
+    schedulesPayment: withToken(schedulesPayment),
+    payBillingKey: withToken(payBillingKey),
+    payInstant: withToken(payInstant),
+    escrowLogis: withToken(escrowLogis),
+    escrowComplete: withToken(escrowComplete),
   };
 };
