@@ -24,6 +24,15 @@ export type SchedulePaymentExceptionCode =
   | 'PERMISSION_DENIED'
   | 'STORE_NOT_FOUND'
   | 'BILLING_KEY_NOT_FOUND';
+export type BillingKeyPaymentExceptionCode =
+  | PaymentExceptionCode
+  | 'TAX_FREE_AMOUNT_MUST_BE_LESS_THAN_OR_EQUAL_TO_TOTAL_AMOUNT'
+  | 'BILLING_KEY_ALREADY_DELETED'
+  | 'PAYMENT_ALREADY_PAID'
+  | 'PERMISSION_DENIED'
+  | 'STORE_NOT_FOUND'
+  | 'BILLING_KEY_NOT_FOUND'
+  | 'PG_PROVIDER_ERROR';
 
 export interface ApiException {
   /**

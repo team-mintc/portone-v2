@@ -599,7 +599,7 @@ export interface SeparatedAddress {
   /** 상세 주소 */
   address_line_2: string;
 }
-
+export type Address = SeparatedAddress;
 export interface Customer {
   /** 구매자 ID */
   id?: string;
@@ -618,6 +618,30 @@ export interface Customer {
   separated_address?: SeparatedAddress;
   /** 구매자 우편번호 */
   zipcode?: string;
+}
+
+export interface CustomerName {
+  full_name?: string;
+  first_name?: string;
+  last_name?: string;
+}
+export interface CustomerFormWithoutId
+  extends Omit<
+    Customer,
+    'id' | 'name' | 'one_line_address' | 'separated_address' | 'birthYear'
+  > {
+  /** 고객 이름 정보. full_name만 채워져 있거나, first_name & last_name이 채워져 있어야 함 */
+  customer_name?: CustomerName;
+  /** 주소 형식 */
+  address?: Address;
+  /** 출생연도 */
+  birth_year?: string;
+  /** 국가 코드 */
+  country?: Country;
+  /** 출생월 */
+  birth_month?: string;
+  /** 출생일 */
+  birth_day?: string;
 }
 
 export interface Origin {

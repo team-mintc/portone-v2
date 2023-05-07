@@ -1,5 +1,6 @@
 import {
   ApiException,
+  BillingKeyPaymentExceptionCode,
   CancelPaymentExceptionCode,
   NoticeVirtualAccountDepositExceptionCode,
   PaymentExceptionCode,
@@ -8,6 +9,7 @@ import {
 } from './ApiException';
 import {
   BillingKeyPayment,
+  CustomerFormWithoutId,
   Payment,
   PaymentMethod,
   PgProvider,
@@ -130,4 +132,27 @@ export interface SchedulePaymentResponse {
 
 export interface SchedulePaymentException extends Omit<ApiException, 'code'> {
   code: SchedulePaymentExceptionCode;
+}
+
+export interface BillingKeyPaymentParam
+  extends BillingKeyPayment,
+    PaymentParam {
+  /** 빌링키 결제를 진행하는 상점의 id */
+  store_id?: string;
+  scheduled_at: string;
+  /** 고객 정보 */
+  customer?: CustomerFormWithoutId;
+}
+
+export interface BillingKeyPaymentResponse {
+  tx_id: string;
+  customer_id: string;
+  requested_at: string;
+  paid_at: string;
+  /** PG사 거래ID */
+  pg_tx_id: string;
+}
+
+export interface BillingKeyPaymentException extends Omit<ApiException, 'code'> {
+  code: BillingKeyPaymentExceptionCode;
 }

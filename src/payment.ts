@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {
+  BillingKeyPaymentParam,
+  BillingKeyPaymentResponse,
   CancelPaymentParam,
   CancelPaymentResponse,
   NoticeVirtualAccountDepositParam,
@@ -141,4 +143,24 @@ export const schedulesPayment = async (
     data,
   });
   return response.data as SchedulePaymentResponse;
+};
+
+/**
+ * 결제 예약
+ */
+export const payBillingKey = async (
+  access_token: string,
+  params: BillingKeyPaymentParam,
+) => {
+  const {payment_id, ...data} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/payments/${payment_id}/billing-key/pay`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    data,
+  });
+  return response.data as BillingKeyPaymentResponse;
 };
