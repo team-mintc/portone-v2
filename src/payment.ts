@@ -5,6 +5,8 @@ import {
   PaymentParam,
   PaymentResponse,
   PaymentsParam,
+  ResendWebhookParam,
+  ResendWebhookResponse,
 } from 'types/Payment';
 
 /**
@@ -69,4 +71,27 @@ export const cancelPayment = async (
     data,
   });
   return response.data as CancelPaymentResponse;
+};
+
+/**
+ * 웹훅 재발송
+ *
+ * tx_id와 webhook_id 모두 값을 넣지 않으면 대표 트랜잭션의 가장 최근 웹훅 발송 이력을 기준으로 재전송됩니다.
+ */
+export const resendWebhook = async (
+  access_token: string,
+  params: ResendWebhookParam,
+) => {
+  const {payment_id, store_id, ...data} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/payments/${payment_id}/resend-webhook`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    params: {store_id},
+    data,
+  });
+  return response.data as ResendWebhookResponse;
 };
