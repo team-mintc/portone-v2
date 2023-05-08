@@ -57,6 +57,8 @@ export type CancelSchedulesExceptionCode =
   | ExceptionCode
   | 'SCHEDULE_ALREADY_PROCESSED';
 
+export type GetScheduleExceptionCode = ExceptionCode | 'SCHEDULE_NOT_FOUND';
+
 export interface ApiException {
   /**
    * 에러 코드

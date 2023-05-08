@@ -2,6 +2,7 @@ import {
   ApiException,
   CancelSchedulesExceptionCode,
   ExceptionCode,
+  GetScheduleExceptionCode,
 } from './ApiException';
 import {Schedule, ScheduleStatus} from './common';
 
@@ -10,7 +11,7 @@ interface ScheduleCommonParam {
   store_id?: string;
 }
 
-export interface ScheduleParam extends ScheduleCommonParam {
+export interface GetSchedulesParam extends ScheduleCommonParam {
   /** 결제예약시각(scheduled_at) 범위의 시작 - 값을 넣지 않으면 파라미터 end의 90일 전으로 설정됩니다. */
   start: string;
   /** 결제예약시각(scheduled_at) 범위의 끝 - 값을 넣지 않으면 현재 시각으로 설정됩니다 */
@@ -23,7 +24,7 @@ export interface ScheduleParam extends ScheduleCommonParam {
   limit?: number;
 }
 
-export interface ScheduleResponse {
+export interface GetSchedulesResponse {
   current_page: number;
   total_page: number;
   total_count: number;
@@ -31,7 +32,7 @@ export interface ScheduleResponse {
   schedules: Schedule[];
 }
 
-export interface ScheduleException extends Omit<ApiException, 'code'> {
+export interface GetSchedulesException extends Omit<ApiException, 'code'> {
   code: ExceptionCode;
 }
 
@@ -49,4 +50,18 @@ export interface CancelScheduleResponse {
 
 export interface CancelScheduleException extends Omit<ApiException, 'code'> {
   code: CancelSchedulesExceptionCode;
+}
+
+export interface GetScheduleParam {
+  /** 정기결제예약 ID */
+  schedule_id: string;
+}
+
+export interface GetScheduleResponse {
+  /** 결제예약정보 */
+  schedules: Schedule[];
+}
+
+export interface GetScheduleException extends Omit<ApiException, 'code'> {
+  code: GetScheduleExceptionCode;
 }
