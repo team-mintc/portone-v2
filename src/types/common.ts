@@ -1424,6 +1424,8 @@ export interface PublicStoreBusinessLicense {
   /** 발급 사유 */
   issuance_reason?: string;
 }
+export interface UpdatePublicStoreBusinessLicenseRequest
+  extends Omit<PublicStoreBusinessLicense, 'taxation_type'> {}
 export interface PublicStoreResponse {
   /** 상점 아이디 */
   id: string;

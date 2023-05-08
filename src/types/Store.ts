@@ -4,6 +4,7 @@ import {
   PublicStoreRepresentativeRequest,
   PublicStoreRepresentativeResponse,
   PublicStoreResponse,
+  UpdatePublicStoreBusinessLicenseRequest,
 } from './common';
 
 export interface GetStoresParams {}
@@ -78,5 +79,19 @@ export interface GetStoreParams {
 export interface GetStoreResponse extends CreateStoreResponse {}
 
 export interface GetStoreException extends Omit<ApiException, 'code'> {
+  code: ExceptionCode;
+}
+
+export interface UpdateStoreParams
+  extends Omit<CreateStoreParams, 'tier_code' | 'business_license'> {
+  /** store의 id */
+  store_id: string;
+  /** 사업자 정보 */
+  business_license: UpdatePublicStoreBusinessLicenseRequest;
+}
+
+export interface UpdateStoreResponse extends CreateStoreResponse {}
+
+export interface UpdateStoreException extends Omit<ApiException, 'code'> {
   code: ExceptionCode;
 }
