@@ -18,7 +18,7 @@ import {refreshToken, signIn} from 'auth';
 import {cancelSchedules, getSchedule, getSchedules} from 'schedule';
 import {getChannels} from 'channel';
 import {cancelCashReceipt, getCashReceipt, issueCashReceipt} from 'cashReceipt';
-import {getBillingKeys} from 'billingKey';
+import {getBillingKeys, issueBillingKey} from 'billingKey';
 
 export * from '@portone/browser-sdk/v2';
 
@@ -64,5 +64,6 @@ export const init = async (api_key: string) => {
     issueCashReceipt: withToken(issueCashReceipt),
     cancelCashReceipt: withToken(cancelCashReceipt),
     getBillingKeys: withToken(getBillingKeys),
+    issueBillingKey: withToken(issueBillingKey),
   };
 };

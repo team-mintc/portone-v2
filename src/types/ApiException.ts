@@ -82,6 +82,13 @@ export type CancelCashReceiptExceptionCode =
   | 'CASH_RECEIPT_NOT_ISSUED'
   | 'PG_PROVIDER_ERROR';
 
+export type IssueBillingKeyExceptionCode =
+  | ExceptionCode
+  | 'PG_PROVIDER_ERROR'
+  | 'PERMISSION_DENIED'
+  | 'STORE_NOT_FOUND'
+  | 'CHANNEL_NOT_FOUND';
+
 export interface ApiException {
   /**
    * 에러 코드

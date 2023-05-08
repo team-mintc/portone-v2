@@ -1,5 +1,10 @@
 import axios from 'axios';
-import {GetBillingKeysParams, GetBillingKeysResponse} from 'types/BillingKey';
+import {
+  GetBillingKeysParams,
+  GetBillingKeysResponse,
+  IssueBillingKeyParams,
+  IssueBillingKeyResponse,
+} from 'types/BillingKey';
 
 /**
  * 빌링키 다건 조회
@@ -19,4 +24,24 @@ export const getBillingKeys = async (
     params: {...queries},
   });
   return response.data as GetBillingKeysResponse;
+};
+
+/**
+ * 빌링키 발급
+ */
+export const issueBillingKey = async (
+  access_token: string,
+  params: IssueBillingKeyParams,
+) => {
+  const {...data} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/billing-keys`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    data,
+  });
+  return response.data as IssueBillingKeyResponse;
 };

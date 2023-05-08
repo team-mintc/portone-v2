@@ -1354,3 +1354,28 @@ export interface BillingKey {
   /** 빌링키 결제수단 상세정보  */
   payment_method_detail: BillingKeyPaymentMethod;
 }
+
+export interface InstantBillingKeyCardForm {
+  /** 카드를 이용한 결제 및 빌링키 발급에 필요한 인증 관련 정보 */
+  card_credential: CardCredential;
+  cvc?: string;
+  /** 3DS 인증 결과를 담는 객체 (Verified by Visa) */
+  vbv?: VBV;
+}
+
+export interface MobileForm {
+  /**
+   * 휴대폰 통신사
+   *
+   * "SKT", "KT", "LGU", "HELLO", "KCT", "SK7"
+   */
+  carrier: Carrier;
+}
+
+export interface InstantBillingKeyPaymentMethodForm {
+  /** 빌링키 발급 시에 필요한 카드 관련 정보 */
+  card?: InstantBillingKeyCardForm;
+
+  /** 휴대폰을 이용한 소액결제와 정기결제를 위한 빌링키 발급 시에 사용하는 휴대폰 관련 정보 */
+  mobile_phone?: MobileForm;
+}
