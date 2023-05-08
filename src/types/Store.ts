@@ -69,3 +69,14 @@ export interface CreateStoreResponse {
 export interface CreateStoreException extends Omit<ApiException, 'code'> {
   code: ExceptionCode;
 }
+
+export interface GetStoreParams {
+  /** store의 id */
+  store_id: string;
+}
+
+export interface GetStoreResponse extends CreateStoreResponse {}
+
+export interface GetStoreException extends Omit<ApiException, 'code'> {
+  code: ExceptionCode;
+}

@@ -2,6 +2,8 @@ import axios from 'axios';
 import {
   CreateStoreParams,
   CreateStoreResponse,
+  GetStoreParams,
+  GetStoreResponse,
   GetStoresParams,
   GetStoresResponse,
 } from 'types/Store';
@@ -44,4 +46,24 @@ export const createStore = async (
     data,
   });
   return response.data as CreateStoreResponse;
+};
+
+/**
+ * 하위상점 단건 조회
+ */
+export const getStore = async (
+  access_token: string,
+  params: GetStoreParams,
+) => {
+  const {store_id, ...queries} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/stores/${store_id}`,
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    params: {...queries},
+  });
+  return response.data as GetStoreResponse;
 };
