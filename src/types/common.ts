@@ -238,9 +238,9 @@ export interface ChannelV2 {
   /** 결제 채널 이름 */
   channel_name: string;
   /**
-  : V2 결제가 가능한 PG사
+   * V2 결제가 가능한 PG사
    *
-  : 기본값: "PG_PROVIDER_UNSPECIFIED"
+   * 기본값: "PG_PROVIDER_UNSPECIFIED"
    */
   pg_provider: PgProvider;
   /** 기본값: "CHANNEL_TYPE_UNSPECIFIED" */
@@ -845,21 +845,21 @@ export interface CardDetail {
   /** 발급사 코드 */
   issuer?: string;
   /**
-  : 카드 브랜드
+   * 카드 브랜드
    *
-  : "LOCAL", "MASTER", "UNIONPAY", "VISA", "JCB", "AMEX", "DINERS"
+   * "LOCAL", "MASTER", "UNIONPAY", "VISA", "JCB", "AMEX", "DINERS"
    */
   brand?: CardBrand;
   /**
-  : 카드 종류
+   * 카드 종류
    *
-  : "CREDIT", "DEBIT", "GIFT"
+   * "CREDIT", "DEBIT", "GIFT"
    */
   card_type?: CardType;
   /**
-  : 카드 소유주 유형
+   * 카드 소유주 유형
    *
-  : "PERSONAL", "CORPORATE"
+   * "PERSONAL", "CORPORATE"
    */
   card_owner_type?: CardOwnerType;
   /** 카드 빈넘버 */
@@ -1365,9 +1365,9 @@ export interface InstantBillingKeyCardForm {
 
 export interface MobileForm {
   /**
-  : 휴대폰 통신사
+   * 휴대폰 통신사
    *
-  : "SKT", "KT", "LGU", "HELLO", "KCT", "SK7"
+   * "SKT", "KT", "LGU", "HELLO", "KCT", "SK7"
    */
   carrier: Carrier;
 }
@@ -1443,4 +1443,17 @@ export interface PublicStoreResponse {
   representative: PublicStoreRepresentativeResponse;
   /** 사업자 정보 */
   business_license: PublicStoreBusinessLicense;
+}
+
+export interface PublicStoreRepresentativeRequest {
+  /** 대표자 이름 */
+  name_ko: string;
+  /** 대표자 영문 이름 */
+  name_en: string;
+  /** 대표자 이메일 */
+  email: string;
+  /** 대표자 전화번호 */
+  phone_number: string;
+  /** 대표자 생년월일 format: yyyy-MM-dd ex) 2000-01-01 */
+  birth_date: string;
 }
