@@ -1168,3 +1168,56 @@ export interface LogisticsForm {
   /** 주소 형식 */
   address?: Address;
 }
+
+export type ScheduleStatus =
+  | 'SCHEDULED'
+  | 'STARTED'
+  | 'COMPLETED'
+  | 'CANCELLED';
+
+export interface Schedule {
+  /** 결제예약 ID */
+  id: string;
+  /** 가맹점 ID */
+  merchant_id: string;
+  /** 하위 상점 ID */
+  store_id: string;
+  /** 빌링키 */
+  billing_key: string;
+  /** 결제 ID */
+  payment_id: string;
+  /** 예약결제 상태 */
+  status: ScheduleStatus;
+  /** 결제 예약 시각 */
+  scheduled_at: string;
+  /** 결제 실행 시각 (status가 STARTED로 되었을 경우 제공) */
+  started_at?: string;
+  /** 결제 완료 시각 (status가 COMPLETED인 경우 제공) */
+  completed_at?: string;
+  /** 결제 취소 시각 (status가 CANCELLED인 경우 제공) */
+  cancelled_at?: string;
+  /** 주문명 */
+  order_name: string;
+  /** 문화비 지출 여부 */
+  is_cultural_expense: boolean;
+  /** 에스크로 결제 여부 */
+  is_escrow: boolean;
+  /** 상품 정보 (에스크로 결제 시 에스크로 상품 정보로 활용됨) */
+  products?: Product[];
+  /** 구매자 정보 */
+  customer: Customer;
+  /** 커스텀 데이터 */
+  custom_data?: string;
+  /** 결제 금액 */
+  total_amount: number;
+  /** 면세 금액 */
+  tax_free_amount?: number;
+  /** 통화 */
+  currency: Currency;
+  /** 결제를 요청한 근원에 대한 정보 */
+  origin?: Origin;
+  /** 결제 승인/실패 시 요청을 받을 웹훅 주소입니다. 상점에 설정되어 있는 값보다 우선적으로 적용됩니다. */
+  notice_urls: string[];
+  /** 할부개월 */
+  installment_month?: number;
+}
