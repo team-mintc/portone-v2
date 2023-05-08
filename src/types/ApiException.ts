@@ -76,6 +76,12 @@ export type IssueCashReceiptExceptionCode =
   | 'CHANNEL_NOT_FOUND'
   | 'PG_PROVIDER_ERROR';
 
+export type CancelCashReceiptExceptionCode =
+  | PaymentExceptionCode
+  | 'CASH_RECEIPT_NOT_FOUND'
+  | 'CASH_RECEIPT_NOT_ISSUED'
+  | 'PG_PROVIDER_ERROR';
+
 export interface ApiException {
   /**
    * 에러 코드

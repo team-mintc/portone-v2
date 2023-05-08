@@ -1,5 +1,6 @@
 import {
   ApiException,
+  CancelCashReceiptExceptionCode,
   GetCashReceiptExceptionCode,
   IssueCashReceiptExceptionCode,
 } from './ApiException';
@@ -56,4 +57,17 @@ export interface IssueCashReceiptResponse {
 
 export interface IssueCashReceiptException extends Omit<ApiException, 'code'> {
   code: IssueCashReceiptExceptionCode;
+}
+
+export interface CancelCashReceiptParams extends PaymentParam {}
+
+export interface CancelCashReceiptResponse {
+  /** 현금영수증 취소 금액 */
+  cancelled_amount: number;
+  /** 현금영수증 취소 시각 */
+  cancelled_at: string;
+}
+
+export interface CancelCashReceiptException extends Omit<ApiException, 'code'> {
+  code: CancelCashReceiptExceptionCode;
 }

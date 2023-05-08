@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {
+  CancelCashReceiptParams,
+  CancelCashReceiptResponse,
   GetCashReceiptParams,
   GetCashReceiptResponse,
   IssueCashReceiptParams,
@@ -46,4 +48,24 @@ export const issueCashReceipt = async (
     data,
   });
   return response.data as IssueCashReceiptResponse;
+};
+
+/**
+ * 현금영수증 발급 취소
+ */
+export const cancelCashReceipt = async (
+  access_token: string,
+  params: CancelCashReceiptParams,
+) => {
+  const {payment_id, ...queries} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/payments/${payment_id}/cash-receipt`,
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    params: {...queries},
+  });
+  return response.data as CancelCashReceiptResponse;
 };
