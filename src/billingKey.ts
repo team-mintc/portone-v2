@@ -65,3 +65,23 @@ export const getBillingKey = async (
   });
   return response.data as GetBillingKeysResponse;
 };
+
+/**
+ * 빌링키 삭제
+ */
+export const deleteBillingKey = async (
+  access_token: string,
+  params: GetBillingKeysParams,
+) => {
+  const {billing_key, ...queries} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/billing-keys/${billing_key}`,
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    params: {...queries},
+  });
+  return response.data as GetBillingKeysResponse;
+};

@@ -93,6 +93,14 @@ export type GetBillingKeyExceptionCode =
   | ExceptionCode
   | 'BILLING_KEY_NOT_FOUND';
 
+export type DeleteBillingKeyExceptionCode =
+  | ExceptionCode
+  | 'BILLING_KEY_NOT_ISSUED'
+  | 'BILLING_KEY_ALREADY_DELETED'
+  | 'BOOKED_SCHEDULE_EXISTENCE'
+  | 'BILLING_KEY_NOT_FOUND'
+  | 'PG_PROVIDER_ERROR';
+
 export interface ApiException {
   /**
    * 에러 코드
