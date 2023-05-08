@@ -844,11 +844,23 @@ export interface CardDetail {
   publisher?: string;
   /** 발급사 코드 */
   issuer?: string;
-  /** 카드 브랜드 */
+  /**
+   * 카드 브랜드
+   *
+   * "LOCAL", "MASTER", "UNIONPAY", "VISA", "JCB", "AMEX", "DINERS"
+   */
   brand?: CardBrand;
-  /** 카드 종류 */
+  /**
+   * 카드 종류
+   *
+   * "CREDIT", "DEBIT", "GIFT"
+   */
   card_type?: CardType;
-  /** 카드 소유주 유형 */
+  /**
+   * 카드 소유주 유형
+   *
+   * "PERSONAL", "CORPORATE"
+   */
   card_owner_type?: CardOwnerType;
   /** 카드 빈넘버 */
   bin?: string;
@@ -1303,4 +1315,42 @@ export interface CashReceiptDetail {
   currency?: Currency;
   /** 결제 채널 정보 */
   channel?: Channel;
+}
+
+export interface BillingKeyPaymentMethod {
+  /** 카드 정보 */
+  card?: Pick<Card, 'detail' | 'number'>;
+
+  /** 모바일결제 정보 */
+  mobile?: Mobile;
+
+  /** 간편결제 정보 */
+  easy_pay?: {
+    /** 간편결제 PG사 */
+    provider: EasyPayProvider;
+  };
+}
+export interface BillingKey {
+  /** 빌링키 */
+  billing_key: string;
+  /** 가맹점 ID */
+  merchant_id: string;
+  /** 하위 상점 ID */
+  store_id: string;
+  /** 결제 채널 정보 */
+  channel: Channel;
+  /** 결제를 요청한 근원에 대한 정보 */
+  origin?: Origin;
+  /** 구매자 정보 */
+  customer: Customer;
+  /** 발급 일시 (status가 ISSUED인 경우 제공) */
+  issued_at?: string;
+  /** 커스텀 데이터 */
+  custom_data?: string;
+  /** 가맹점이 채번 하는 빌링키 발급 건 고유 ID */
+  issue_id?: string;
+  /** 빌링키 발급 건 이름 */
+  issue_name?: string;
+  /** 빌링키 결제수단 상세정보  */
+  payment_method_detail: BillingKeyPaymentMethod;
 }
