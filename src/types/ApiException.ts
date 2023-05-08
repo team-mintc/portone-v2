@@ -58,6 +58,10 @@ export type CancelSchedulesExceptionCode =
   | 'SCHEDULE_ALREADY_PROCESSED';
 
 export type GetScheduleExceptionCode = ExceptionCode | 'SCHEDULE_NOT_FOUND';
+export type GetChannelExceptionCode =
+  | ExceptionCode
+  | 'CHANNEL_NOT_FOUND'
+  | 'PERMISSION_DENIED';
 
 export interface ApiException {
   /**

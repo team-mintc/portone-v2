@@ -8,6 +8,11 @@ export type PaymentMethod =
   | 'GIFT_CERTIFICATE'
   | 'EASY_PAY';
 export type ChannelType = 'LIVE' | 'TEST';
+export type ChannelTypeV2 =
+  | 'CHANNEL_TYPE_UNSPECIFIED'
+  | 'CHANNEL_TYPE_LIVE'
+  | 'CHANNEL_TYPE_MERCHANT_TEST'
+  | 'CHANNEL_TYPE_SHARED_TEST';
 export type Bank =
   | 'BANK_OF_KOREA'
   | 'KOREA_DEVELOPMENT_BANK'
@@ -125,6 +130,12 @@ export type PgProvider =
   | 'INICIS_UNIFIED'
   | 'KSNET'
   | 'PINPAY';
+export type PgProviderV2 =
+  | 'PG_PROVIDER_UNSPECIFIED'
+  | 'PG_PROVIDER_TOSSPAYMENTS'
+  | 'PG_PROVIDER_KSNET'
+  | 'PG_PROVIDER_KAKAOPAY'
+  | 'PG_PROVIDER_SMARTRO_V2';
 export type WebhookStatus = 'SUCCEEDED' | 'REQUEST_FAILED' | 'CONNECT_FAILED';
 export type WebhookType =
   | 'READY'
@@ -206,6 +217,43 @@ export interface Channel {
   pg_provider: PgProvider;
   /** PG사에 등록된 가맹점 ID */
   pg_merchant_id: string;
+}
+
+export interface TossPaymentsCredential {
+  secret_key?: string;
+  client_key?: string;
+}
+export interface KsnetCredential {
+  api_key?: string;
+}
+export interface SmartroV2Credential {
+  merchant_key?: string;
+  cancel_password?: string;
+  ssp_mall_id?: string;
+  api_key?: string;
+}
+export interface ChannelV2 {
+  /** 결제 채널 ID */
+  channel_id: string;
+  /** 결제 채널 이름 */
+  channel_name: string;
+  /**
+   * V2 결제가 가능한 PG사
+   *
+   * 기본값: "PG_PROVIDER_UNSPECIFIED"
+   */
+  pg_provider: PgProvider;
+  /** 기본값: "CHANNEL_TYPE_UNSPECIFIED" */
+  channel_type: ChannelTypeV2;
+  /** PG 상점 ID */
+  pg_merchant_id: string;
+  /** 결제용 채널 여부 */
+  is_for_paymen: boolean;
+  /** 본인인증용 채널 여부 */
+  is_for_identification_certification?: boolean;
+  toss_payments_credential?: TossPaymentsCredential;
+  ksnet_credential?: KsnetCredential;
+  smartro_v2_credential?: SmartroV2Credential;
 }
 
 export type Currency =
