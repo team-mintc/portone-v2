@@ -68,6 +68,14 @@ export type GetCashReceiptExceptionCode =
   | PaymentExceptionCode
   | 'CASH_RECEIPT_NOT_FOUND';
 
+export type IssueCashReceiptExceptionCode =
+  | ExceptionCode
+  | 'CASH_RECEIPT_ALREADY_ISSUED'
+  | 'PERMISSION_DENIED'
+  | 'STORE_NOT_FOUND'
+  | 'CHANNEL_NOT_FOUND'
+  | 'PG_PROVIDER_ERROR';
+
 export interface ApiException {
   /**
    * 에러 코드
