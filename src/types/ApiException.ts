@@ -58,10 +58,15 @@ export type CancelSchedulesExceptionCode =
   | 'SCHEDULE_ALREADY_PROCESSED';
 
 export type GetScheduleExceptionCode = ExceptionCode | 'SCHEDULE_NOT_FOUND';
+
 export type GetChannelExceptionCode =
   | ExceptionCode
   | 'CHANNEL_NOT_FOUND'
   | 'PERMISSION_DENIED';
+
+export type GetCashReceiptExceptionCode =
+  | PaymentExceptionCode
+  | 'CASH_RECEIPT_NOT_FOUND';
 
 export interface ApiException {
   /**

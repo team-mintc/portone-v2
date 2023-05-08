@@ -238,9 +238,9 @@ export interface ChannelV2 {
   /** 결제 채널 이름 */
   channel_name: string;
   /**
-   * V2 결제가 가능한 PG사
+  : V2 결제가 가능한 PG사
    *
-   * 기본값: "PG_PROVIDER_UNSPECIFIED"
+  : 기본값: "PG_PROVIDER_UNSPECIFIED"
    */
   pg_provider: PgProvider;
   /** 기본값: "CHANNEL_TYPE_UNSPECIFIED" */
@@ -1268,4 +1268,39 @@ export interface Schedule {
   notice_urls: string[];
   /** 할부개월 */
   installment_month?: number;
+}
+
+export interface CashReceiptDetail {
+  /** PG사 현금영수증 발급 ID */
+  pg_receipt_id?: string;
+  /** 현금영수증 승인번호 */
+  issue_number: string;
+  /** "PERSONAL", "CORPORATE", "ANONYMOUS"  */
+  type?: CashReceiptType;
+  /** 금액 */
+  amount: number;
+  /** 면세금액 */
+  tax_free_amount?: number;
+  /** "ISSUED", "CANCELLED" */
+  status?: CashReceiptStatus;
+  /** 발급일시 */
+  issued_at: string;
+  /** 취소일시 (status가 CANCELLED인 경우 제공) */
+  cancelled_at?: string;
+  /** 영수증 url */
+  receipt_url?: string;
+  /** 가맹점 ID */
+  merchant_id: string;
+  /** 하위 상점 ID */
+  store_id: string;
+  /** 결제 ID */
+  payment_id: string;
+  /** 주문명 */
+  order_name: string;
+  /** 수동발급 여부 */
+  is_manual: boolean;
+  /** 통화 */
+  currency?: Currency;
+  /** 결제 채널 정보 */
+  channel?: Channel;
 }
