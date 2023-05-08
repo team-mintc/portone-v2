@@ -845,21 +845,21 @@ export interface CardDetail {
   /** 발급사 코드 */
   issuer?: string;
   /**
-   * 카드 브랜드
+  : 카드 브랜드
    *
-   * "LOCAL", "MASTER", "UNIONPAY", "VISA", "JCB", "AMEX", "DINERS"
+  : "LOCAL", "MASTER", "UNIONPAY", "VISA", "JCB", "AMEX", "DINERS"
    */
   brand?: CardBrand;
   /**
-   * 카드 종류
+  : 카드 종류
    *
-   * "CREDIT", "DEBIT", "GIFT"
+  : "CREDIT", "DEBIT", "GIFT"
    */
   card_type?: CardType;
   /**
-   * 카드 소유주 유형
+  : 카드 소유주 유형
    *
-   * "PERSONAL", "CORPORATE"
+  : "PERSONAL", "CORPORATE"
    */
   card_owner_type?: CardOwnerType;
   /** 카드 빈넘버 */
@@ -1365,9 +1365,9 @@ export interface InstantBillingKeyCardForm {
 
 export interface MobileForm {
   /**
-   * 휴대폰 통신사
+  : 휴대폰 통신사
    *
-   * "SKT", "KT", "LGU", "HELLO", "KCT", "SK7"
+  : "SKT", "KT", "LGU", "HELLO", "KCT", "SK7"
    */
   carrier: Carrier;
 }
@@ -1375,7 +1375,72 @@ export interface MobileForm {
 export interface InstantBillingKeyPaymentMethodForm {
   /** 빌링키 발급 시에 필요한 카드 관련 정보 */
   card?: InstantBillingKeyCardForm;
-
   /** 휴대폰을 이용한 소액결제와 정기결제를 위한 빌링키 발급 시에 사용하는 휴대폰 관련 정보 */
   mobile_phone?: MobileForm;
+}
+
+export interface PublicStoreRepresentativeResponse {
+  /** 대표자 이름 */
+  name_ko: string;
+  /** 대표자 영문 이름 */
+  name_en?: string;
+  /** 대표자 이메일 */
+  email: string;
+  /** 대표자 전화번호 */
+  phone_number: string;
+  /** 대표자 생년월일 format: yyyy-MM-dd ex) 2000-01-01 */
+  birth_date?: string;
+}
+export type TaxationType = 'PERSON' | 'CORPORATE';
+export interface PublicStoreBusinessLicense {
+  /**
+   * 사업자 구분
+   *
+   * "PERSON", "CORPORATE"
+   */
+  taxation_type: TaxationType;
+  /** 회사명 */
+  company_name: string;
+  /** 사업자번호 */
+  registration_number: string;
+  /** 회사 주소 */
+  business_location: string;
+  /** 회사 상세 주소 */
+  business_location_detail: string;
+  /** 우편번호 */
+  postal_code: string;
+  /** 업태 */
+  business_types: string[];
+  /** 종목 */
+  business_items: string[];
+  /** 법인등록번호 - 법인 only */
+  corporate_registration_number?: string;
+  /** 본사 주소 - 법인 only */
+  headquarter_location?: string;
+  /** 개업 연월일 */
+  business_establishment_date?: string;
+  /** 사업자등록증 발급일 */
+  issuance_date?: string;
+  /** 발급 사유 */
+  issuance_reason?: string;
+}
+export interface PublicStoreResponse {
+  /** 상점 아이디 */
+  id: string;
+  /** 상점 이름 */
+  name: string;
+  /** 상점 식별 코드 ex) ABC 영문, 숫자 3자리 */
+  tier_code: string;
+  /** 서비스 url 리스트 */
+  service_urls: string[];
+  /** 담당자명 */
+  manager_name?: string;
+  /** 담당자 휴대폰번호 */
+  manager_phone_number?: string;
+  /** 담당자 이메일 */
+  manager_email?: string;
+  /** 상점 대표자 정보 */
+  representative: PublicStoreRepresentativeResponse;
+  /** 사업자 정보 */
+  business_license: PublicStoreBusinessLicense;
 }

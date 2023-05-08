@@ -24,6 +24,7 @@ import {
   getBillingKeys,
   issueBillingKey,
 } from 'billingKey';
+import {getStores} from 'store';
 
 export * from '@portone/browser-sdk/v2';
 
@@ -72,5 +73,6 @@ export const init = async (api_key: string) => {
     issueBillingKey: withToken(issueBillingKey),
     getBillingKey: withToken(getBillingKey),
     deleteBillingKey: withToken(deleteBillingKey),
+    getStores: withToken(getStores),
   };
 };
