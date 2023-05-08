@@ -53,6 +53,10 @@ export type EscrowLogisExceptionCode =
 
 export type EscrowCompleteExceptionCode = EscrowLogisExceptionCode;
 
+export type CancelSchedulesExceptionCode =
+  | ExceptionCode
+  | 'SCHEDULE_ALREADY_PROCESSED';
+
 export interface ApiException {
   /**
    * 에러 코드

@@ -1,4 +1,8 @@
-import {ApiException, ExceptionCode} from './ApiException';
+import {
+  ApiException,
+  CancelSchedulesExceptionCode,
+  ExceptionCode,
+} from './ApiException';
 import {Schedule, ScheduleStatus} from './common';
 
 interface ScheduleCommonParam {
@@ -27,6 +31,22 @@ export interface ScheduleResponse {
   schedules: Schedule[];
 }
 
-export interface EscrowCompleteException extends Omit<ApiException, 'code'> {
+export interface ScheduleException extends Omit<ApiException, 'code'> {
   code: ExceptionCode;
+}
+
+export interface CancelScheduleParam extends ScheduleCommonParam {
+  /** 정기결제예약 빌링키 */
+  billing_key: string;
+  /** 삭제할 정기결제예약 아이디 목록, 비어있을 경우 빌링키로 예약한 모든 예약을 취소함 */
+  schedule_id?: string[];
+}
+
+export interface CancelScheduleResponse {
+  /** 삭제된 정기결제예약 아이디 목록 */
+  deleted_schedule_ids: string[];
+}
+
+export interface CancelScheduleException extends Omit<ApiException, 'code'> {
+  code: CancelSchedulesExceptionCode;
 }

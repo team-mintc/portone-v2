@@ -15,6 +15,7 @@ import {
   schedulesPayment,
 } from 'payment';
 import {refreshToken, signIn} from 'auth';
+import {cancelSchedules, getSchedules} from 'schedule';
 
 export * from '@portone/browser-sdk/v2';
 
@@ -52,5 +53,7 @@ export const init = async (api_key: string) => {
     payInstant: withToken(payInstant),
     escrowLogis: withToken(escrowLogis),
     escrowComplete: withToken(escrowComplete),
+    getSchedules: withToken(getSchedules),
+    cancelSchedules: withToken(cancelSchedules),
   };
 };
