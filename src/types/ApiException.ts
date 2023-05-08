@@ -89,6 +89,10 @@ export type IssueBillingKeyExceptionCode =
   | 'STORE_NOT_FOUND'
   | 'CHANNEL_NOT_FOUND';
 
+export type GetBillingKeyExceptionCode =
+  | ExceptionCode
+  | 'BILLING_KEY_NOT_FOUND';
+
 export interface ApiException {
   /**
    * 에러 코드
