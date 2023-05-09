@@ -25,6 +25,7 @@ import {
   issueBillingKey,
 } from 'billingKey';
 import {createStore, getStore, getStores, updateStore} from 'store';
+import {getStoreApplication} from 'onboarding';
 
 export * from '@portone/browser-sdk/v2';
 
@@ -77,5 +78,6 @@ export const init = async (api_key: string) => {
     createStore: withToken(createStore),
     getStore: withToken(getStore),
     updateStore: withToken(updateStore),
+    getStoreApplication: withToken(getStoreApplication),
   };
 };

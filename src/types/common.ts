@@ -847,19 +847,19 @@ export interface CardDetail {
   /**
    * 카드 브랜드
    *
-   * "LOCAL", "MASTER", "UNIONPAY", "VISA", "JCB", "AMEX", "DINERS"
+   * "LOCAL"|"MASTER"|"UNIONPAY"|"VISA"|"JCB"|"AMEX"|"DINERS"
    */
   brand?: CardBrand;
   /**
    * 카드 종류
    *
-   * "CREDIT", "DEBIT", "GIFT"
+   * "CREDIT"|"DEBIT"|"GIFT"
    */
   card_type?: CardType;
   /**
    * 카드 소유주 유형
    *
-   * "PERSONAL", "CORPORATE"
+   * "PERSONAL"|"CORPORATE"
    */
   card_owner_type?: CardOwnerType;
   /** 카드 빈넘버 */
@@ -1287,13 +1287,13 @@ export interface CashReceiptDetail {
   pg_receipt_id?: string;
   /** 현금영수증 승인번호 */
   issue_number: string;
-  /** "PERSONAL", "CORPORATE", "ANONYMOUS"  */
+  /** "PERSONAL"|"CORPORATE"|"ANONYMOUS"  */
   type?: CashReceiptType;
   /** 금액 */
   amount: number;
   /** 면세금액 */
   tax_free_amount?: number;
-  /** "ISSUED", "CANCELLED" */
+  /** "ISSUED"|"CANCELLED" */
   status?: CashReceiptStatus;
   /** 발급일시 */
   issued_at: string;
@@ -1367,7 +1367,7 @@ export interface MobileForm {
   /**
    * 휴대폰 통신사
    *
-   * "SKT", "KT", "LGU", "HELLO", "KCT", "SK7"
+   * "SKT"|"KT"|"LGU"|"HELLO"|"KCT"|"SK7"
    */
   carrier: Carrier;
 }
@@ -1396,7 +1396,7 @@ export interface PublicStoreBusinessLicense {
   /**
    * 사업자 구분
    *
-   * "PERSON", "CORPORATE"
+   * "PERSON"|"CORPORATE"
    */
   taxation_type: TaxationType;
   /** 회사명 */
@@ -1458,4 +1458,165 @@ export interface PublicStoreRepresentativeRequest {
   phone_number: string;
   /** 대표자 생년월일 format: yyyy-MM-dd ex) 2000-01-01 */
   birth_date: string;
+}
+
+export type PgCompany =
+  | 'UNIDENTIFIED'
+  | 'NICE'
+  | 'KCP'
+  | 'KICC'
+  | 'DANAL'
+  | 'SETTLE'
+  | 'JTNET'
+  | 'INICIS'
+  | 'SMARTRO'
+  | 'BLUEWALNUT'
+  | 'TOSSPAYMENTS'
+  | 'DAOU'
+  | 'KSNET'
+  | 'MOBILIANS'
+  | 'ALIPAY'
+  | 'EXIMBAY'
+  | 'PAYPAL'
+  | 'PAYMENTWALL'
+  | 'NAVERPAY'
+  | 'NAVERCO'
+  | 'KAKAOPAY'
+  | 'TOSSPAY'
+  | 'CHAI'
+  | 'PAYCO'
+  | 'SMILEPAY';
+
+export type MethodAndType =
+  | 'CARD_GENERAL'
+  | 'CARD_SUBSCRIBE'
+  | 'CARD_KEYIN'
+  | 'TRANS_GENERAL'
+  | 'VBANK_GENERAL'
+  | 'PHONE_GENERAL'
+  | 'PHONE_SUBSCRIBE'
+  | 'GIFT_CARD_GENERAL'
+  | 'ABROAD_GENERAL'
+  | 'MY_ACCOUNT_GENERAL'
+  | 'NAVERPAY_GENERAL'
+  | 'NAVERCO_GENERAL'
+  | 'KAKAOPAY_GENERAL'
+  | 'TOSSPAY_GENERAL'
+  | 'PAYCO_GENERAL'
+  | 'SMILEPAY_GENERAL'
+  | 'CERTIFICATION_PHONE'
+  | 'CERTIFICATION_UNIFIED';
+
+export type ApplicationStatusClass =
+  | 'RECEPTION_SCHEDULED'
+  | 'TRANSFER'
+  | 'RECEPTION_PENDING'
+  | 'RECEPTION_COMPLETED'
+  | 'APPLICATION_CANCELED'
+  | 'MERCHANT_REVIEWING'
+  | 'CONTRACT_PROCESSING'
+  | 'CONTRACT_COMPLETED'
+  | 'CONTRACT_CANCELED'
+  | 'CONTRACT_PENDING'
+  | 'CONTRACT_REJECTED'
+  | 'SERVICE_CLOSED'
+  | 'SERVICE_OPEN';
+
+export type BankName =
+  | 'BANK_OF_KOREA'
+  | 'KDB'
+  | 'IBK'
+  | 'KB'
+  | 'HANA'
+  | 'SH'
+  | 'KOREA_EXIMBANK'
+  | 'NH'
+  | 'WOORI'
+  | 'SHINHAN'
+  | 'SC'
+  | 'CITY'
+  | 'DGB'
+  | 'BOOSAN_BANK'
+  | 'KJ_BANK'
+  | 'JEJU_BANK'
+  | 'JB_BANK'
+  | 'KN_BANK'
+  | 'MG'
+  | 'CU'
+  | 'SB'
+  | 'BOA'
+  | 'MORGAN_STANLEY'
+  | 'HSBC'
+  | 'DEUTSCHE_BANK'
+  | 'JP_MORGAN'
+  | 'BNP_PARISBAS'
+  | 'ICBC'
+  | 'BANK_OF_CHINA'
+  | 'SJ'
+  | 'CHINA_CONSTRUCTION_BANK'
+  | 'POST_BANK'
+  | 'K_BANK'
+  | 'KAKAO_BANK'
+  | 'TOSS_BANK';
+
+export interface PgSpecificInfo {
+  /** 배송 및 서비스 기간 */
+  delivery_or_service_period?: string;
+  /** 개발 방식 */
+  development_method?: 'SELF_DEVELOPMENT' | 'WORDPRESS';
+
+  /** 결제 제공 국가 (ISO 3166-1 alpha-2) */
+  supporting_countries?: string[];
+
+  /** 페이코 ID */
+  payco_id?: string;
+
+  /** 은행 */
+  bank_name?: BankName;
+
+  /** 계좌번호 */
+  account_number?: string;
+
+  /**   예금주명 */
+  account_holder_name?: string;
+
+  /** 홈페이지 명 (서비스 명) */
+  homepage_name?: string;
+
+  /** 약관들 동의 여부 */
+  nicepay_terms_agreed?: boolean[];
+}
+
+export interface PgCredential {
+  /** mid */
+  mid: string;
+  /** api key */
+  api_key: string;
+  /** client key */
+  client_key: string;
+  /** mert key */
+  mert_key: string;
+}
+
+export interface ApplicationPublic {
+  /** 전자결제 신청 id */
+  id: string;
+  /** 전자결제 신청한 store id */
+  store_id?: string;
+  /** PG사 */
+  pg_company: PgCompany;
+  /** 해당 PG사로 신청한 결제수단 및 방식 */
+  methods: MethodAndType[];
+  /** 신청 상태 대분류 */
+  status: ApplicationStatusClass;
+  /** PG사별 특수값 */
+  pg_specific_info: PgSpecificInfo;
+  /** 실패 사유 */
+  failed_reason?: string;
+  /** 결제 연동에 필요한 Credential */
+  pg_credential?: PgCredential;
+  /** 생성 시각 */
+  created: string;
+  /** 수정 시각 */
+  modified: string;
 }
