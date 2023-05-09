@@ -1620,3 +1620,33 @@ export interface ApplicationPublic {
   /** 수정 시각 */
   modified: string;
 }
+
+export type PublicPgCompany = 'UNIDENTIFIED' | 'TOSSPAYMENTS';
+
+export type PublicMethodAndType =
+  | 'CARD_GENERAL'
+  | 'CARD_SUBSCRIBE'
+  | 'TRANS_GENERAL'
+  | 'VBANK_GENERAL'
+  | 'PHONE_GENERAL'
+  | 'GIFT_CARD_GENERAL';
+export interface ApplicationByPgCompany {
+  /** PG사 */
+  pg_company: PublicPgCompany;
+  /**
+   * 결제 수단 및 방식
+   *
+   * CARD_GENERAL: 카드 일반결제
+   *
+   * CARD_SUBSCRIBE: 카드 정기결제
+   *
+   * TRANS_GENERAL: 계좌이체 일반결제
+   *
+   * VBANK_GENERAL: 가상계좌 일반결제
+   *
+   * PHONE_GENERAL: 휴대폰 일반결제
+   *
+   * GIFT_CARD_GENERAL: 상품권 일반결제
+   */
+  methods: PublicMethodAndType[];
+}
