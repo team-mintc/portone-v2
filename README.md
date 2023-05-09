@@ -117,7 +117,7 @@ try {
 ## 문서
 https://portone.gitbook.io/docs/api-v2/v2-api
 
-getPaymentDetails: [결제내역 단건조회]([https://github.com/team-mintc/example-payments](https://portone.gitbook.io/docs/api-v2/payment#undefined))
+getPaymentDetails: [결제내역 단건조회](https://portone.gitbook.io/docs/api-v2/payment#undefined-1)
 
 getPaymentsDetails: [결제내역 다건조회](https://portone.gitbook.io/docs/api-v2/payment#undefined-8)
 
