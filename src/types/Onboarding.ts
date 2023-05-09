@@ -4,7 +4,7 @@ import {
   ApplicationPublic,
   PgSpecificInfo,
   TosspaymentsApplicationUrl,
-} from './Commona';
+} from './Common';
 
 export interface GetStoreApplicationParams {
   /** store의 id */

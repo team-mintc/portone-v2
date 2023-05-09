@@ -9,7 +9,7 @@ import {
   BillingKey,
   CustomerForm,
   InstantBillingKeyPaymentMethodForm,
-} from './Commona';
+} from './Common';
 
 export interface GetBillingKeysParams {
   /** 빌링키 */
