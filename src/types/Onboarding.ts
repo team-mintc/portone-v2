@@ -3,6 +3,7 @@ import {
   ApplicationByPgCompany,
   ApplicationPublic,
   PgSpecificInfo,
+  TosspaymentsApplicationUrl,
 } from './common';
 
 export interface GetStoreApplicationParams {
@@ -33,6 +34,20 @@ export interface RequestApplicationsResponse {
 }
 
 export interface RequestApplicationsException
+  extends Omit<ApiException, 'code'> {
+  code: ExceptionCode;
+}
+
+export interface GetTossPaymentsStatusAndUrlParams {
+  /** store의 id */
+  store_id?: string;
+}
+
+export interface GetTossPaymentsStatusAndUrlResponse {
+  urls: TosspaymentsApplicationUrl[];
+}
+
+export interface GetTossPaymentsStatusAndUrlException
   extends Omit<ApiException, 'code'> {
   code: ExceptionCode;
 }

@@ -1650,3 +1650,43 @@ export interface ApplicationByPgCompany {
    */
   methods: PublicMethodAndType[];
 }
+
+export interface TosspaymentsApplicationUrl {
+  /** 전자결제 신청 id */
+  application_id: string;
+  /**
+   * GENERAL: 일반결제
+   *
+   * SUBSCRIBE: 정기결제
+   *
+   * EASY: 간편결제
+   */
+  payment_type: 'GENERAL' | 'SUBSCRIBE' | 'EASY';
+  /** 토스페이먼츠 온보딩페이지 url status가 READY, IN_DRAFT인 경우만 값이 담겨짐 */
+  onboarding_url?: string;
+  /**
+   * 토스페이먼츠 계약 상태 (토스페이먼츠에서 내려주는 상태값)
+   *
+   * READY: 신청서 작성 전
+   *
+   * IN_DRAFT: 신청서 작성 중
+   *
+   * WAIT_FOR_REVIEW: 신청서 제출 완료
+   *
+   * IN_REVIEW: 심사 중
+   *
+   * DONE: 계약 완료
+   *
+   * CANCELED: 계약 취소
+   *
+   * TERMINATED: 계약 해지
+   */
+  status:
+    | 'READY'
+    | 'IN_DRAFT'
+    | 'WAIT_FOR_REVIEW'
+    | 'IN_REVIEW'
+    | 'DONE'
+    | 'CANCELED'
+    | 'TERMINATED';
+}

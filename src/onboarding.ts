@@ -2,6 +2,10 @@ import axios from 'axios';
 import {
   GetStoreApplicationParams,
   GetStoreApplicationResponse,
+  GetTossPaymentsStatusAndUrlParams,
+  GetTossPaymentsStatusAndUrlResponse,
+  RequestApplicationsParams,
+  RequestApplicationsResponse,
 } from 'types/Onboarding';
 
 /**
@@ -33,11 +37,35 @@ export const getStoreApplication = async (
  */
 export const requestApplications = async (
   access_token: string,
-  params: GetStoreApplicationParams,
+  params: RequestApplicationsParams,
+) => {
+  const {store_id, ...data} = params;
+  const response = await axios({
+    url: `https://api.portone.io/v2/stores/${store_id}/applications`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + access_token,
+    },
+    data,
+  });
+  return response.data as RequestApplicationsResponse;
+};
+
+/**
+ * 가입 신청 URL 호출 & 상태값 조회하기
+ *
+ * 1. 가입 신청 URL 호출 (호스팅사 > 포트원 > 결제대행사) - 토스페이먼츠 전용
+ *
+ * 2. 상태값 조회하기 (결제대행사 > 포트원 > 호스팅사)
+ */
+export const getTossPaymentsStatusAndUrl = async (
+  access_token: string,
+  params: GetTossPaymentsStatusAndUrlParams,
 ) => {
   const {store_id, ...queries} = params;
   const response = await axios({
-    url: `https://api.portone.io/v2/stores/${store_id}/applications`,
+    url: `https://api.portone.io/v2/stores/${store_id}/applications/tosspayments-status-and-url`,
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -45,5 +73,5 @@ export const requestApplications = async (
     },
     params: {...queries},
   });
-  return response.data as GetStoreApplicationResponse;
+  return response.data as GetTossPaymentsStatusAndUrlResponse;
 };
