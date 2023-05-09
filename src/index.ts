@@ -37,7 +37,7 @@ import {
 
 export * as PortOne from '@portone/browser-sdk/v2';
 
-export const init = async (api_key: string) => {
+export const initializePortOneAPI = async (api_key: string) => {
   let tokens: Token = await signIn({api_key});
 
   const handleRefresh = async <T, R>(
