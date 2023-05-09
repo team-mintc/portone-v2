@@ -1,5 +1,5 @@
-import {ApiException} from 'types/ApiException';
-import {Token} from 'types/Auth';
+import {ApiException} from './types/ApiException';
+import {Token} from './types/Auth';
 import _ from 'lodash';
 
 import {
@@ -13,23 +13,27 @@ import {
   payInstant,
   resendWebhook,
   schedulesPayment,
-} from 'payment';
-import {refreshToken, signIn} from 'auth';
-import {cancelSchedules, getSchedule, getSchedules} from 'schedule';
-import {getChannels} from 'channel';
-import {cancelCashReceipt, getCashReceipt, issueCashReceipt} from 'cashReceipt';
+} from './payment';
+import {refreshToken, signIn} from './auth';
+import {cancelSchedules, getSchedule, getSchedules} from './schedule';
+import {getChannels} from './channel';
+import {
+  cancelCashReceipt,
+  getCashReceipt,
+  issueCashReceipt,
+} from './cashReceipt';
 import {
   deleteBillingKey,
   getBillingKey,
   getBillingKeys,
   issueBillingKey,
-} from 'billingKey';
-import {createStore, getStore, getStores, updateStore} from 'store';
+} from './billingKey';
+import {createStore, getStore, getStores, updateStore} from './store';
 import {
   getStoreApplication,
   getTossPaymentsStatusAndUrl,
   requestApplications,
-} from 'onboarding';
+} from './onboarding';
 
 export * as PortOne from '@portone/browser-sdk/v2';
 

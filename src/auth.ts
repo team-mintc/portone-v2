@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {AuthResponse, RefreshParam, SignInParam} from 'types/Auth';
+import {AuthResponse, RefreshParam, SignInParam} from './types/Auth';
 
 /**
  * API Key 방식으로 로그인

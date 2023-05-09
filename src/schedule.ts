@@ -6,7 +6,7 @@ import {
   GetScheduleResponse,
   GetSchedulesParam,
   GetSchedulesResponse,
-} from 'types/Schedule';
+} from './types/Schedule';
 
 /**
  * 정기결제예약 다건 조회

@@ -6,7 +6,7 @@ import {
   GetTossPaymentsStatusAndUrlResponse,
   RequestApplicationsParams,
   RequestApplicationsResponse,
-} from 'types/Onboarding';
+} from './types/Onboarding';
 
 /**
  * 하위상점의 전자결제 신청 정보를 가져오기 (호스팅사 > 포트원)

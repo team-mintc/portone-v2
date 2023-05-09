@@ -6,7 +6,7 @@ import {
   GetCashReceiptResponse,
   IssueCashReceiptParams,
   IssueCashReceiptResponse,
-} from 'types/CashReceipt';
+} from './types/CashReceipt';
 
 /**
  * 현금영수증 조회

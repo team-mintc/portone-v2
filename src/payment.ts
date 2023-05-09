@@ -17,7 +17,7 @@ import {
   ResendWebhookResponse,
   SchedulePaymentParam,
   SchedulePaymentResponse,
-} from 'types/Payment';
+} from './types/Payment';
 
 /**
  * 결제내역 단건조회

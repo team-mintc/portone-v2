@@ -1,5 +1,5 @@
 import {ApiException, GetChannelExceptionCode} from './ApiException';
-import {ChannelV2} from './common';
+import {ChannelV2} from './Common';
 
 export interface GetChannelParams {
   /** 하위상점 ID (Merchant 유저가 store_id를 명시하지 않으면, Merchant 유저의 대표 상점 id가 입력됨) */

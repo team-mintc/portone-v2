@@ -4,7 +4,7 @@ import {
   GetBillingKeysResponse,
   IssueBillingKeyParams,
   IssueBillingKeyResponse,
-} from 'types/BillingKey';
+} from './types/BillingKey';
 
 /**
  * 빌링키 다건 조회

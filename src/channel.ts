@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GetChannelParams, GetChannelResponse} from 'types/Channel';
+import {GetChannelParams, GetChannelResponse} from './types/Channel';
 
 /**
  * 채널 불러오기

@@ -8,7 +8,7 @@ import {
   GetStoresResponse,
   UpdateStoreParams,
   UpdateStoreResponse,
-} from 'types/Store';
+} from './types/Store';
 
 /**
  * 하위상점 다건 조회
