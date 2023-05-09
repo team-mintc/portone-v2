@@ -23,7 +23,7 @@ import {
   PgProvider,
   RefundAccount,
   TransactionStatus,
-} from './Common';
+} from './Commona';
 
 export interface PaymentParam {
   /** 결제 ID */

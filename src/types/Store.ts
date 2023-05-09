@@ -5,7 +5,7 @@ import {
   PublicStoreRepresentativeResponse,
   PublicStoreResponse,
   UpdatePublicStoreBusinessLicenseRequest,
-} from './Common';
+} from './Commona';
 
 export interface GetStoresParams {}
 

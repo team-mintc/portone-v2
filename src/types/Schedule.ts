@@ -4,7 +4,7 @@ import {
   ExceptionCode,
   GetScheduleExceptionCode,
 } from './ApiException';
-import {Schedule, ScheduleStatus} from './Common';
+import {Schedule, ScheduleStatus} from './Commona';
 
 interface ScheduleCommonParam {
   /** 하위 상점 ID - 값을 넣지 않으면 Merchant 유저의 기본값으로 설정된 상점의 id가 입력됩니다. */

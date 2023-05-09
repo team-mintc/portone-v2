@@ -9,7 +9,7 @@ import {
   CashReceiptType,
   Currency,
   ProductType,
-} from './Common';
+} from './Commona';
 import {PaymentParam} from './Payment';
 
 export interface GetCashReceiptParams extends PaymentParam {}
