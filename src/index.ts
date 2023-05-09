@@ -57,6 +57,7 @@ export const initializePortOneAPI = async (api_key: string) => {
         const result = await func(tokens.access_token, params);
         return result;
       }
+      throw error;
     }
   };
 
