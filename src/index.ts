@@ -38,6 +38,10 @@ import {
 export * as PortOne from '@portone/browser-sdk/v2';
 
 export const initializePortOneAPI = async (api_key: string) => {
+  if (!api_key) {
+    throw 'Invalid API Key';
+  }
+
   let tokens: Token = await signIn({api_key});
 
   const handleRefresh = async <T, R>(
