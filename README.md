@@ -113,6 +113,39 @@ try {
 // ...
 ```
 
+
+## 문서
+https://portone.gitbook.io/docs/api-v2/v2-api
+
+getPaymentDetails: [결제내역 단건조회]([https://github.com/team-mintc/example-payments](https://portone.gitbook.io/docs/api-v2/payment#undefined))
+getPaymentsDetails: [결제내역 다건조회](https://portone.gitbook.io/docs/api-v2/payment#undefined-8)
+cancelPayment: [결제 취소](https://portone.gitbook.io/docs/api-v2/payment#undefined-22)
+resendWebhook: [웹훅 재발송](https://portone.gitbook.io/docs/api-v2/payment#undefined-32)
+noticeVirtualAccountDeposit: [가상계좌 테스트 웹훅 호출](https://portone.gitbook.io/docs/api-v2/payment#undefined-40)
+schedulesPayment: [결제 예약](https://portone.gitbook.io/docs/api-v2/payment#undefined-49)
+payBillingKey: [빌링키 결제](https://portone.gitbook.io/docs/api-v2/payment#undefined-59)
+payInstant: [키인(수기) 결제](https://portone.gitbook.io/docs/api-v2/payment#undefined-69)
+escrowLogis: [에스크로 배송정보 등록/변경](https://portone.gitbook.io/docs/api-v2/payment#undefined-81)
+escrowComplete: [에스크로 구매완료](https://portone.gitbook.io/docs/api-v2/payment#undefined-91)
+getSchedules: [정기결제예약 다건 조회](https://portone.gitbook.io/docs/api-v2/schedule#undefined)
+cancelSchedules: [빌링키 정기결제예약 취소](https://portone.gitbook.io/docs/api-v2/schedule#undefined-5)
+getSchedule: [정기결제예약 단건 조회](https://portone.gitbook.io/docs/api-v2/schedule#undefined-11)
+getChannels: [채널 불러오기](https://portone.gitbook.io/docs/api-v2/channel#undefined)
+getCashReceipt: [현금영수증 조회](https://portone.gitbook.io/docs/api-v2/cash_receipt#undefined)
+issueCashReceipt: [현금영수증 발급](https://portone.gitbook.io/docs/api-v2/cash_receipt#undefined-6)
+cancelCashReceipt: [현금영수증 발급 취소](https://portone.gitbook.io/docs/api-v2/cash_receipt#undefined-15)
+getBillingKeys: [빌링키 다건 조회](https://portone.gitbook.io/docs/api-v2/billing_key#undefined-1)
+issueBillingKey: [빌링키 발급](https://portone.gitbook.io/docs/api-v2/billing_key#undefined-7)
+getBillingKey: [빌링키 단건 조회](https://portone.gitbook.io/docs/api-v2/billing_key#undefined-18)
+deleteBillingKey: [빌링키 취소](https://portone.gitbook.io/docs/api-v2/billing_key#undefined-25)
+getStores: [하위상점 다건 조회](https://portone.gitbook.io/docs/api-v2/store#undefined-1)
+createStore: [하위상점 생성](https://portone.gitbook.io/docs/api-v2/store#undefined-8)
+getStore: [하위상점 단건 조회](https://portone.gitbook.io/docs/api-v2/store#undefined-17)
+updateStore: [하위상점 수정](https://portone.gitbook.io/docs/api-v2/store#undefined-25)
+getStoreApplication: [하위상점의 전자결제 신청 정보를 가져오기 (호스팅사 > 포트원)](https://portone.gitbook.io/docs/api-v2/applications#greater-than-1)
+requestApplications: [온보딩 API 를 통해 전자결제 신청하기 (호스팅사 > 포트원 > 결제대행사)](https://portone.gitbook.io/docs/api-v2/applications#api-greater-than-greater-than-1)
+getTossPaymentsStatusAndUrl: [가입 신청 URL 호출 & 상태값 조회하기](https://portone.gitbook.io/docs/api-v2/applications#url-and-1)
+
 ## 예제 코드
 
 [https://github.com/team-mintc/example-payments](https://github.com/team-mintc/example-payments)
