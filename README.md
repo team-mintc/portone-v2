@@ -1,15 +1,17 @@
 ![MintC Logo](https://user-images.githubusercontent.com/5517346/236246009-1621709d-3182-4462-a060-dcf417361294.png)
 
-# PortOne
+# PortOne V2
 
 ## 설치
 
 npm 사용
+
 ```
 npm i @team-mintc/portone-v2
 ```
 
 yarn사용
+
 ```
 yarn add @team-mintc/portone-v2
 ```
@@ -19,6 +21,7 @@ yarn add @team-mintc/portone-v2
 ### 결제 요청
 
 pages/index.tsx
+
 ```typescript
 import {PortOne} from '@team-mintc/portone-v2';
 
@@ -56,7 +59,9 @@ PortOne.requestPayment({
 ```
 
 ### 결제 검증
+
 api/complete.ts
+
 ```typescript
 import {initializePortOneAPI} from '@team-mintc/portone-v2';
 
@@ -113,8 +118,8 @@ try {
 // ...
 ```
 
-
 ## 문서
+
 https://portone.gitbook.io/docs/api-v2/v2-api
 
 getPaymentDetails: [결제내역 단건조회](https://portone.gitbook.io/docs/api-v2/payment#undefined-1)
