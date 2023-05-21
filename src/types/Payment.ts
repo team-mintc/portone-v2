@@ -105,14 +105,14 @@ export interface ResendWebhookParam extends PaymentParam {
   webhook_id?: string;
 }
 
-export interface WebhookResponse extends PaymentResponse {
+export interface PaymentWebhookResponse extends PaymentResponse {
   /** 재발송 대상 트랜잭션 아이디 */
   tx_id: string;
   /** 재발송 대상 웹훅 아이디 (값을 넣지 않으면 가장 최근의 웹훅 아이디 기준으로 재전송) 비동기 웹훅이거나 웹훅 처리에 너무 오랜 시간이 걸리는 경우 값이 비어있을 수 있습니다. */
   webhook_id: string;
 }
 
-export interface ResendWebhookResponse extends WebhookResponse {}
+export interface ResendWebhookResponse extends PaymentWebhookResponse {}
 
 export interface ResendWebhookException extends Omit<ApiException, 'code'> {
   code: ResendWebhookExceptionCode;
@@ -120,7 +120,8 @@ export interface ResendWebhookException extends Omit<ApiException, 'code'> {
 
 export interface NoticeVirtualAccountDepositParam extends PaymentParam {}
 
-export interface NoticeVirtualAccountDepositResponse extends WebhookResponse {}
+export interface NoticeVirtualAccountDepositResponse
+  extends PaymentWebhookResponse {}
 
 export interface NoticeVirtualAccountDepositException
   extends Omit<ApiException, 'code'> {

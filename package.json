@@ -1,6 +1,6 @@
 {
   "name": "@team-mintc/portone-v2",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "description": "api wrapper for portone v2",
   "main": "./lib/index.js",
   "files": [

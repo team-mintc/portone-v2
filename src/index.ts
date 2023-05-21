@@ -1,7 +1,6 @@
 import {ApiException} from './types/ApiException';
 import {Token} from './types/Auth';
 import _ from 'lodash';
-
 import {
   cancelPayment,
   escrowComplete,
@@ -36,6 +35,7 @@ import {
 } from './onboarding';
 
 export * as PortOne from '@portone/browser-sdk/v2';
+export type * from './types';
 
 export const initializePortOneAPI = async (api_key: string) => {
   if (!api_key) {
